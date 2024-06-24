@@ -1,23 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
+
+// Components
+import Register from './Components/Register/Register';
+import Login from './Components/Login/Login';
+import LandingPage from './Components/LandingPage/LandingPage';
+import Dashboard from './Components/Dashboard/Dashboard';
+import Summary from './Components/Summary/Summary';
+import Code from './Components/Code/Code';
+import Bot from './Components/Bot/Bot';
+import ImageIdentify from './Components/ImageIdentify/ImageIdentify';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+       <Routes>
+        <Route path='/' element={<LandingPage/>}/>
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/summaryHub" element={<Summary />} />
+        <Route path="/codeHub" element={<Code/>} />
+        <Route path="/chatHub" element={<Bot/>} />
+        <Route path="/imageHub" element={<ImageIdentify/>} />
+      </Routes>
     </div>
   );
 }

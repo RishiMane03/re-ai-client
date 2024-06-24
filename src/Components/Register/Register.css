@@ -1,0 +1,140 @@
+.Register{
+    /* background-color: rgb(38, 38, 38); */
+    /* background: url("https://images.unsplash.com/photo-1484950763426-56b5bf172dbb?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: -1;
+}
+
+.Register video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+.allRegister {
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    background-color: rgba(1, 1, 1, 0.2);
+    border-radius: 1rem;
+    box-shadow: 10px 10px 1px rgba(255, 255, 255, 0.1);
+    width: 40%;
+    height: 53%;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headingRegister {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex: 1;
+}
+
+.headingRegister h1 {
+    writing-mode: vertical-lr;
+    letter-spacing: 1rem; /* Adjust spacing as necessary */
+    transform: rotate(180deg); /* Rotate to correct vertical text direction */
+    margin: 0;
+}
+
+.formDiv{
+    flex: 2;
+}
+
+.formRegister{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+
+
+.formRegister input{
+    width: 80%;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+.passwordVisibility{
+    background-color: white;
+    width: 83%;
+    border-radius: 5px;
+    padding-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.passwordVisibility button{
+    cursor: pointer;
+    display: flex;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: rgb(32, 95, 98);
+    font-weight: 600;
+}
+
+.submitRegister{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0.8rem;
+}
+
+.submitRegister p{
+    color: white;
+    font-size: 0.9rem;
+}
+
+.submitRegister button {
+    margin-top: 1rem;
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 10rem; /* Initial width */
+    transition: background-color 0.5s ease, color 0.5s ease;
+    animation: width-animation 0.5s forwards;
+}
+
+.submitRegister button:hover {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    animation: width-animation-hover 0.5s forwards;
+}
+
+@keyframes width-animation {
+    from {
+        width: 10rem;
+    }
+    to {
+        width: 10rem;
+    }
+}
+
+@keyframes width-animation-hover {
+    from {
+        width: 10rem;
+    }
+    to {
+        width: 12rem;
+    }
+}
