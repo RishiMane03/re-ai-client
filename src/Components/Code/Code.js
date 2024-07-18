@@ -5,6 +5,27 @@ import './Code.css'
 import NavBar from '../NavBar/NavBar';
 import toast from 'react-hot-toast';
 // import VariableContext from '../../Content/VariableContext';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+
+
+const genAI = new GoogleGenerativeAI(process.env.REACT_APP_API_KEY);
+
+async function geminiAi(text, language) {
+  const prompt = `write only code in a ${language} language for ${text}`;
+  console.log('prompt: ', prompt);
+
+  try {
+    const model = await genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const textData = await response.text();
+    console.log(textData);
+    return textData;
+  } catch (error) {
+    console.error('Error generating content:', error);
+    return 'API is not Working';
+  }
+}
 
 
 function Code() {
@@ -46,9 +67,11 @@ function Code() {
         }
         try {
             setLoaderDisplay(true)
-            const response = await axios.post(`https://re-ai-server-2.onrender.com/ai/getCode`, { inputedCode,language });
-            // console.log('response > ',response.data.codeSolution);
-            setyourCode(response.data.codeSolution);
+            // const response = await axios.post(`https://re-ai-server-2.onrender.com/ai/getCode`, { inputedCode,language });
+            // // console.log('response > ',response.data.codeSolution);
+            // setyourCode(response.data.codeSolution);
+            const codeSolution = await geminiAi('Solve this:', `${inputedCode} in ${language}`);
+            setyourCode(codeSolution);
           } catch (error) {
             console.error('Error:', error);
             if(error.response.data.sessionExpired){
