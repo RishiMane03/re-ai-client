@@ -4,7 +4,27 @@ import './Summary.css'
 import NavBar from '../NavBar/NavBar';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 // import VariableContext from '../../Content/VariableContext';
+
+const genAI = new GoogleGenerativeAI(process.env.REACT_APP_API_KEY);
+
+async function geminiAi(text, content) {
+  const prompt = `${text} ${content}`;
+  console.log('prompt: ', prompt);
+
+  try {
+    const model = await genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const textData = await response.text();
+    console.log(textData);
+    return textData;
+  } catch (error) {
+    console.error('Error generating content:', error);
+    return 'API is not Working';
+  }
+}
 
 function Summary() {
 
@@ -40,15 +60,11 @@ function Summary() {
 
     try {
       setLoaderDisplay(true)
-      const response = await axios.post(`https://re-ai-server-2.onrender.com/ai/summarize`, { paragraph });
-      // console.log(response.data.summary);
-      setSummary(response.data.summary);
+      // const response = await axios.post(`https://re-ai-server-2.onrender.com/ai/summarize`, { paragraph });
+      // setSummary(response.data.summary);
+      const summaryText = await geminiAi('Summarize this:', paragraph);
+      setSummary(summaryText);
     } catch (error) {
-    //   console.error('Error or NoToken:', error);
-    //   if(error.response.data.sessionExpired){
-    //     navigate('/login')
-    //     return  toast.error("Session Exipred Please Login")
-    //   }
         console.log(error);
     }
   };
